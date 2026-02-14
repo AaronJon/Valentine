@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hilda ❤️</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+  background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+  overflow-x:hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ---------- ENVELOPE ---------- */
+
+.envelope-wrapper{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.envelope{
+  position:relative;
+  width:340px;
+  height:220px;
+  background:#fdf1e6;
+  border-radius:10px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.25);
+  cursor:pointer;
+  transition:0.8s;
+}
+
+.envelope:before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#f7d9c4;
+  clip-path:polygon(0 0,50% 55%,100% 0);
+  transition:0.8s;
+  transform-origin:top;
+}
+
+.envelope.open:before{
+  transform:rotateX(180deg);
+}
+
+.envelope-text{
+  position:absolute;
+  width:100%;
+  top:50%;
+  transform:translateY(-50%);
+  text-align:center;
+  font-weight:bold;
+  color:#b91c1c;
+  font-size:20px;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+
+#mainContent{
+  display:none;
+}
+
+/* ---------- MODAL ---------- */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  z-index:50;
+}
+
+.modal-content{
+  background:white;
+  width:100%;
+  max-width:800px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:16px;
+  padding:25px;
+  position:relative;
+}
+
+.close-btn{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:30px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- ================= ENVELOPE PAGE ================= -->
+
+<div class="envelope-wrapper" id="envelopeSection">
+  <div class="envelope" id="envelope">
+    <div class="envelope-text">
+      For Hilda 💌 <br> My Valentine
+    </div>
+  </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div id="mainContent" class="min-h-screen bg-gray-100 pb-20">
+
+  <!-- Facebook Style Banner -->
+  <div class="relative">
+    <!-- Cover Photo -->
+    <div class="h-60 bg-gradient-to-r from-pink-400 to-rose-500"></div>
+
+    <!-- Profile Image -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 -bottom-16">
+      <!-- 🔥 PUT HER IMAGE HERE -->
+      <img src="assets/hilda.jpg"
+           class="w-40 h-40 rounded-full border-4 border-white object-cover shadow-xl">
+    </div>
+  </div>
+
+  <!-- Name -->
+  <div class="mt-20 text-center">
+    <h1 class="text-3xl font-bold text-gray-800">
+      Hilda Bright-Yankey ❤️
+    </h1>
+    <p class="text-gray-500">My Forever Valentine</p>
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex justify-center gap-6 mt-8 flex-wrap">
+    <button onclick="openModal('photos')"
+      class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-full shadow-lg">
+      📸 Photos
+    </button>
+
+    <button onclick="openModal('video')"
+      class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full shadow-lg">
+      🎥 Watch Me!
+    </button>
+
+    <button onclick="openModal('message')"
+      class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full shadow-lg">
+      💌 Valentine Message
+    </button>
+  </div>
+
+</div>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+
+const envelope = document.getElementById("envelope");
+const envelopeSection = document.getElementById("envelopeSection");
+const mainContent = document.getElementById("mainContent");
+
+envelope.addEventListener("click",()=>{
+  envelope.classList.add("open");
+  setTimeout(()=>{
+    envelopeSection.style.display="none";
+    mainContent.style.display="block";
+  },800);
+});
+
+function openModal(type){
+  const modal = document.getElementById("modal");
+  const body = document.getElementById("modalBody");
+  body.innerHTML="";
+
+if(type==="video"){
+  body.innerHTML=`
+    <div class="flex justify-center items-center">
+      <div class="w-full max-w-[380px]">
+        <video controls autoplay playsinline
+          class="w-full h-auto rounded-2xl shadow-xl">
+          <source src="assets/video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  `;
+}
+
+if(type==="message"){
+  body.innerHTML=`
+    <!-- WhatsApp Style Chat -->
+    <div class="bg-[#e5ddd5] p-4 rounded-xl h-[500px] overflow-y-auto">
+
+      <div class="space-y-3">
+
+        <!-- Aaron -->
+        <div class="flex justify-end">
+          <div class="bg-[#dcf8c6] px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Aaron:</strong> Hey babe, you know what day today is right?</p>
+          </div>
+        </div>
+
+        <!-- Abena -->
+        <div class="flex justify-start">
+          <div class="bg-white px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Abena:</strong> It's Valentine dear, you refused to come to Accra.</p>
+          </div>
+        </div>
+
+        <!-- Aaron -->
+        <div class="flex justify-end">
+          <div class="bg-[#dcf8c6] px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Aaron:</strong> I am sorry babe, you know I will make it up to you</p>
+          </div>
+        </div>
+
+        <!-- Abena -->
+        <div class="flex justify-start">
+          <div class="bg-white px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Abena:</strong> I trust you ❤️</p>
+          </div>
+        </div>
+
+        <!-- Aaron -->
+        <div class="flex justify-end">
+          <div class="bg-[#dcf8c6] px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Aaron:</strong> Happy Valentine my love ❤️</p>
+          </div>
+        </div>
+
+        <!-- Abena -->
+        <div class="flex justify-start">
+          <div class="bg-white px-4 py-2 rounded-2xl max-w-xs shadow">
+            <p><strong>Abena:</strong> ❤️❤️❤️</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+
+  if(type==="photos"){
+    body.innerHTML=`
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- 🔥 PUT YOUR 6 IMAGES HERE -->
+        <img src="assets/photo1.jpg" class="rounded-xl cursor-pointer" onclick="enlarge(this.src)">
+        <img src="assets/photo2.jpg" class="rounded-xl cursor-pointer" onclick="enlarge(this.src)">
+        <img src="assets/photo3.jpg" class="rounded-xl cursor-pointer" onclick="enlarge(this.src)">
+     </div>
+    `;
+  }
+
+  modal.style.display="flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+function enlarge(src){
+  document.getElementById("modalBody").innerHTML=
+  `<img src="${src}" class="w-full rounded-xl">`;
+}
+
+</script>
+<p class="text-center text-gray-500 mt-10">Made with ❤️ for her highness</p>
+</body>
+</html>
